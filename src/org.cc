@@ -62,6 +62,8 @@ NAN_METHOD(Org::New) {
 NAN_METHOD(Org::lookupSync) {
   NanScope();
 
+  if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
   Local<Value> data = NanNewLocal<Value>(Null());
   Local<String> host_str = NanNewLocal<String>(args[0]->ToString());
   char host_cstr[host_str->Length() + 1];

@@ -35,6 +35,8 @@ void NetSpeed::Init(Handle<Object> exports) {
 NAN_METHOD(NetSpeed::New) {
     NanScope();
 
+    if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
     NetSpeed *n = new NetSpeed();
 
     String::Utf8Value file_str(args[0]->ToString());
@@ -61,6 +63,8 @@ NAN_METHOD(NetSpeed::New) {
 
 NAN_METHOD(NetSpeed::lookupSync) {
     NanScope();
+
+    if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
 
     NetSpeed *n = ObjectWrap::Unwrap<NetSpeed>(args.This());
 

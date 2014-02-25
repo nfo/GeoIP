@@ -61,6 +61,8 @@ NAN_METHOD(Country6::New) {
 NAN_METHOD(Country6::lookupSync) {
   NanScope();
 
+  if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
   Country6 *c = ObjectWrap::Unwrap<Country6>(args.This());
 
   // Check if database is country ipv6 edition

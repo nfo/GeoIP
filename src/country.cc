@@ -62,6 +62,8 @@ NAN_METHOD(Country::New) {
 NAN_METHOD(Country::lookupSync) {
   NanScope();
 
+  if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
   Country *c = ObjectWrap::Unwrap<Country>(args.This());
 
   Local<Object> data = NanNewLocal<Object>(Object::New());

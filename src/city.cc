@@ -60,6 +60,8 @@ NAN_METHOD(City::New) {
 NAN_METHOD(City::lookupSync) {
   NanScope();
 
+  if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
   City *c = ObjectWrap::Unwrap<City>(args.This());
 
   Local<Object> data = NanNewLocal<Object>(Object::New());

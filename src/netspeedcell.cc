@@ -60,6 +60,8 @@ NAN_METHOD(NetSpeedCell::New) {
 NAN_METHOD(NetSpeedCell::lookupSync) {
   NanScope();
 
+  if( !args[0].As<Object>()->IsString() ) NanReturnValue(Null());
+
   NetSpeedCell *n = ObjectWrap::Unwrap<NetSpeedCell>(args.This());
 
   Local<Value> data = NanNewLocal<Value>(Null());
